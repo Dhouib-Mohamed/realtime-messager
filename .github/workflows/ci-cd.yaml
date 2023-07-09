@@ -26,6 +26,12 @@ jobs:
           yarn build
           yarn test
 
+      - name: Format and lint backend
+        working-directory: frontend
+        run: |
+          yarn format
+          yarn lint
+
       - name: Build and push frontend Docker image
         working-directory: frontend
         env:

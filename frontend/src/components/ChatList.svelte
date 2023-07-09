@@ -74,7 +74,6 @@
 	let containerRef;
 
 	function handleScroll() {
-		console.log(containerRef.scrollTop + containerRef.clientHeight, containerRef.scrollHeight);
 		if (containerRef.scrollTop + containerRef.clientHeight >= containerRef.scrollHeight - 1) {
 			loadMoreChats();
 		}
@@ -89,9 +88,9 @@
 
 <div style="flex: 1;">
 	<div bind:this={containerRef} class="chat-list">
-		<ul class="list">
+		<div class="list">
 			{#each $chats as chat (chat.email)}
-				<li
+				<div
 						class="list-item"
 						on:click={() => {
 						selectChat(chat);
@@ -108,10 +107,10 @@
 						</p>
 					</div>
 					<div class="time">{getDate(chat.lastMessage.createdAt)}</div>
-				</li>
+				</div>
 				<div class="breaker"/>
 			{/each}
-		</ul>
+		</div>
 	</div>
 
 	<button class="new-chat-btn" on:click={openModal}>New Conversation</button>
@@ -122,71 +121,5 @@
 </div>
 
 <style>
-	.new-chat-btn {
-		width: 100%;
-		padding: 8px;
-		border: none;
-		border-radius: 4px;
-		background-color: #4caf50;
-		color: white;
-		font-weight: bold;
-		font-size: 16px;
-		cursor: pointer;
-	}
-
-	.chat-list {
-		height: calc(100% - 100px);
-		overflow-y: auto;
-		background-color: #fff;
-		padding: 16px;
-	}
-
-	.breaker {
-		height: 1px;
-		width: 100%;
-		background-color: #393434;
-		margin: 2px 0;
-	}
-
-	.list-item {
-		margin: 15px 0;
-		elevation: higher;
-	}
-
-	.avatar-name {
-		display: flex;
-		align-items: center;
-	}
-
-	.avatar-name .name {
-		margin-left: 8px;
-		font-size: 16px;
-		font-weight: bold;
-	}
-
-	.avatar-name .avatar {
-		width: 30px;
-		height: 30px;
-		font-size: 18px;
-		font-weight: bold;
-		border-radius: 50%;
-		background-color: #4caf50;
-		color: white;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.chat-details {
-		margin-top: 4px;
-		max-width: 200px;
-	}
-
-	.time {
-		color: #999;
-	}
-
-	.new-chat-btn {
-		margin-top: 16px;
-	}
+	@import "../styles/chatList.css";
 </style>

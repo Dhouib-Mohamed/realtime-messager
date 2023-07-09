@@ -68,40 +68,5 @@
 {/if}
 
 <style>
-    .signout {
-        background-color: #831010;
-        color: #fff;
-        border: 1px solid #ccc;
-        padding: 8px 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-    }
-
-    .app {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .header {
-        display: flex;
-        align-items: center;
-        padding: 0 2rem;
-        background-color: #f1f1f1;
-        border-bottom: 1px solid #ccc;
-        justify-content: space-between;
-    }
-
-    .content {
-        flex: 1;
-        display: flex;
-        overflow: hidden;
-    }
-
-    .chat-window {
-        flex: 2;
-        background-color: #f5f5f5;
-        padding: 16px;
-    }
+    @import '../styles/main.css';
 </style>

@@ -1,3 +1,4 @@
+<!-- index.svelte -->
 <script>
     import SenderMessage from './messages/SenderMessage.svelte';
     import ReceiverMessage from './messages/ReceiverMessage.svelte';
@@ -98,7 +99,7 @@
     }
 </script>
 
-<div style="height: 100%">
+<div class="chat-container">
     <h2>{chat.username}</h2>
     <div bind:this={containerRef} class="messages">
         {#each $messages as message (message.body + message.createdAt)}
@@ -116,34 +117,5 @@
 </div>
 
 <style>
-    .messages {
-        height: calc(100% - 150px);
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .message-input {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 16px;
-    }
-
-    .message-input input {
-        flex: 1;
-        padding: 8px;
-        border-radius: 4px;
-        border: none;
-    }
-
-    .message-input button {
-        margin-left: 8px;
-        padding: 8px 16px;
-        border-radius: 4px;
-        border: none;
-        background-color: #4caf50;
-        color: #fff;
-        cursor: pointer;
-    }
+    @import "../styles/chatWindow.css";
 </style>
