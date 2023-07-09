@@ -27,8 +27,7 @@ module.exports = {
 			},
 			rules: {
 				'svelte/valid-compile': 'off', // Disable A11y linting errors for Svelte components
-				'@typescript-eslint/no-empty-function': 'off',
-				'@typescript-eslint/ban-ts-comment': 'off' // Disable TypeScript linting error in getDate.ts
+				'@typescript-eslint/no-empty-function': 'off'
 			}
 		}
 	]
