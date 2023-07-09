@@ -91,6 +91,8 @@
 		<div class="list">
 			{#each $chats as chat (chat.email)}
 				<div
+						role="button"
+						on:keypress={() => {}}
 						class="list-item"
 						on:click={() => {
 						selectChat(chat);

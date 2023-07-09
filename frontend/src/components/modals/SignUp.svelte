@@ -48,16 +48,16 @@
     <div class="modal">
         <h3>Sign Up</h3>
         <div class="form-control">
-            <label>Username</label>
-            <input bind:value={signUpUsername} required type="text"/>
+            <label for="username">Username</label>
+            <input bind:value={signUpUsername} id="username" required type="text"/>
         </div>
         <div class="form-control">
-            <label>Email</label>
-            <input bind:value={signUpEmail} required type="email"/>
+            <label for="email">Email</label>
+            <input bind:value={signUpEmail} id="email" required type="email"/>
         </div>
         <div class="form-control">
-            <label>Password</label>
-            <input bind:value={signUpPassword} required type="password"/>
+            <label for="password">Password</label>
+            <input bind:value={signUpPassword} id="password" required type="password"/>
         </div>
         <div class="error">
             {error}

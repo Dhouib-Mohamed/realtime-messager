@@ -35,12 +35,12 @@
     <div class="modal">
         <h3>Sign In</h3>
         <div class="form-control">
-            <label>Email</label>
-            <input bind:value={signInEmail} required type="email"/>
+            <label for="email">Email</label>
+            <input bind:value={signInEmail} id="email" required type="email"/>
         </div>
         <div class="form-control">
-            <label>Password</label>
-            <input bind:value={signInPassword} required type="password"/>
+            <label for="password">Password</label>
+            <input bind:value={signInPassword} id="password" required type="password"/>
         </div>
         <div class="error">
             {error}

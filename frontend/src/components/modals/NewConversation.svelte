@@ -26,8 +26,8 @@
 	<div class="modal">
 		<h3>Start New Conversation</h3>
 		<div class="form-control">
-			<label>Email</label>
-			<input bind:value={newChatEmail} required type="email"/>
+			<label for="email">Email</label>
+			<input bind:value={newChatEmail} id="email" required type="email"/>
 		</div>
 		<div class="error">
 			{error}
