@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install Yarn
-        run: npm install -g yarn
-
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -22,7 +19,6 @@ jobs:
           node-version: 18
           registry-url: 'https://registry.yarnpkg.com'
 
-      # Build and test the frontend
       - name: Build and test frontend
         working-directory: frontend
         run: |
@@ -30,14 +26,6 @@ jobs:
           yarn build
           yarn test
 
-      #      # Format and lint the frontend code
-      #      - name: Format and lint frontend
-      #        working-directory: frontend
-      #        run: |
-      #          yarn format
-      #          yarn lint
-
-      # Build the frontend Docker image and push it to Docker Hub
       - name: Build and push frontend Docker image
         working-directory: frontend
         env:
@@ -48,7 +36,6 @@ jobs:
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
           docker push dhouib/realtime_messager:frontend
 
-      # Build and test the backend
       - name: Build and test backend
         working-directory: backend
         run: |
@@ -56,14 +43,12 @@ jobs:
           yarn build
           yarn test
 
-            # Format and lint the backend code
-            - name: Format and lint backend
-              working-directory: backend
-              run: |
-                yarn format
-                yarn lint
+      - name: Format and lint backend
+        working-directory: backend
+        run: |
+          yarn format
+          yarn lint
 
-      # Build the backend Docker image and push it to Docker Hub
       - name: Build and push backend Docker image
         working-directory: backend
         env:
