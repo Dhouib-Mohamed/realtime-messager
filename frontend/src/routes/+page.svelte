@@ -20,7 +20,7 @@
             goto('/preview');
         }
 
-        socket = io(import.meta.env.VITE_BASE_SOCKET_PORT, {
+        socket = io(import.meta.env.VITE_BASE_SOCKET_URL, {
             path: '/socket.io'
         });
 
