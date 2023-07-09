@@ -27,7 +27,6 @@ router.post('/signup', async (req: Request, res: Response) => {
 
         // Save the user to the database
         const user = await newUser.save();
-        console.log(user)
         res.status(201).json({message: 'User created successfully', user});
     } catch (error) {
         res.status(500).json({error});
@@ -53,7 +52,6 @@ router.post('/signin', async (req: Request, res: Response) => {
         if (!isPasswordValid) {
             return res.status(401).json({error: 'Invalid password'});
         }
-        console.log(existingUser)
 
         res.json({message: 'Sign in successful', user: existingUser});
     } catch (error) {

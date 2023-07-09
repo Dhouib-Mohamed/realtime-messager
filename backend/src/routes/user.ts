@@ -1,9 +1,7 @@
 import express, {Request, Response} from 'express';
-import mongoose from 'mongoose';
-import {Server, Socket} from 'socket.io';
+import {Server} from 'socket.io';
 import User from "../models/User";
 import Message from "../models/Message";
-import bcrypt from "bcrypt";
 
 const router = express.Router();
 const io = new Server()
@@ -11,14 +9,11 @@ const io = new Server()
 router.get('/:email', async (req: Request, res: Response) => {
     try {
         const {email} = req.params;
-        console.log(email)
         // Check if the email exists
         const existingUser = await User.findOne({email});
-        console.log(existingUser)
         if (!existingUser) {
             return res.status(404).json({error: 'User not found'});
         }
-        console.log(existingUser)
         res.json({user: {username: existingUser.username, email: existingUser.email}});
     } catch (err) {
         console.error(err);
