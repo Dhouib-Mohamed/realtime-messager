@@ -5,6 +5,8 @@
     import {goto} from '$app/navigation';
     import io from 'socket.io-client';
 
+    console.log("env", import.meta.env)
+
     let selectedChat = null;
     const selectedChatHandler = (chat) => {
         selectedChat = chat;

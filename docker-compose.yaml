@@ -17,7 +17,7 @@ services:
     #    build:
     #      context: ./backend
     #      dockerfile: Dockerfile
-    image: dhouib/realtime_messager:frontend
+    image: dhouib/realtime_messager:backend
     ports:
       - "5000:5000"
       - "5001:5001"
