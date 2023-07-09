@@ -6,6 +6,7 @@
 
 <div class="message sender">
     <div class="message-content">{message.body}</div>
+
     <div class="message-timestamp">{getDate(message.createdAt)}</div>
 </div>
 
