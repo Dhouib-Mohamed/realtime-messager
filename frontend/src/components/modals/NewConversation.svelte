@@ -2,20 +2,20 @@
 	import axios from 'axios';
 
 	export let onClose = () => {
-    };
-    export let onChatSelected = () => {
-    };
-    export let newChatEmail = '';
-    let error = '';
+	};
+	export let onChatSelected = () => {
+	};
+	export let newChatEmail = '';
+	let error = '';
 
-    const createConversation = async () => {
-        try {
-            const response = await axios.get(
-                import.meta.env.VITE_BASE_BACKEND_URL + 'user/' + newChatEmail,
-                {headers: {'Content-Type': 'application/json'}}
-            );
-            onChatSelected({username: response.data.user.username, email: response.data.user.email});
-            onClose();
+	const createConversation = async () => {
+		try {
+			const response = await axios.get(
+					import.meta.env.VITE_BASE_BACKEND_URL + 'user/' + newChatEmail,
+					{headers: {'Content-Type': 'application/json'}}
+			);
+			onChatSelected({username: response.data.user.username, email: response.data.user.email});
+			onClose();
 		} catch (e) {
 			error = e.response.data.error ?? e.message;
 		}
@@ -27,7 +27,7 @@
 		<h3>Start New Conversation</h3>
 		<div class="form-control">
 			<label>Email</label>
-            <input bind:value={newChatEmail} required type="email"/>
+			<input bind:value={newChatEmail} required type="email"/>
 		</div>
 		<div class="error">
 			{error}

@@ -6,7 +6,7 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-        adapter: adapterNode({out: 'build-node', precompress: false})
+		adapter: adapterNode({out: 'build-node', precompress: false})
 	}
 };
 
