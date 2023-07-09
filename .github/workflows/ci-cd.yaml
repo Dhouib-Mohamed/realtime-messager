@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install Yarn
+        run: npm install -g yarn
+
       - name: Checkout repository
         uses: actions/checkout@v2
 
@@ -53,12 +56,12 @@ jobs:
           yarn build
           yarn test
 
-      #      # Format and lint the backend code
-      #      - name: Format and lint backend
-      #        working-directory: backend
-      #        run: |
-      #          yarn format
-      #          yarn lint
+            # Format and lint the backend code
+            - name: Format and lint backend
+              working-directory: backend
+              run: |
+                yarn format
+                yarn lint
 
       # Build the backend Docker image and push it to Docker Hub
       - name: Build and push backend Docker image
