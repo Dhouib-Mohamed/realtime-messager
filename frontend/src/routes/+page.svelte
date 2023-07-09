@@ -1,14 +1,14 @@
 <script>
     import ChatList from '../components/ChatList.svelte';
     import ChatWindow from '../components/ChatWindow.svelte';
-    import {onMount} from "svelte";
+    import {onMount} from 'svelte';
     import {goto} from '$app/navigation';
-    import io from "socket.io-client";
+    import io from 'socket.io-client';
 
     let selectedChat = null;
     const selectedChatHandler = (chat) => {
-        selectedChat = chat
-    }
+        selectedChat = chat;
+    };
     let socket = null;
 
     onMount(() => {
@@ -19,7 +19,7 @@
         }
 
         socket = io(import.meta.env.VITE_BASE_SOCKET_PORT, {
-            path: '/socket.io',
+            path: '/socket.io'
         });
 
         socket.on('connect', () => {
@@ -37,22 +37,26 @@
         };
     });
 </script>
+
 {#if socket}
     <div class="app">
         <div class="header">
             <h1>Chat App</h1>
-            <button class="signout" on:click={() => {
-            localStorage.removeItem('user');
-            goto('/preview');
-        }}>Sign Out
+            <button
+                    class="signout"
+                    on:click={() => {
+					localStorage.removeItem('user');
+					goto('/preview');
+				}}
+            >Sign Out
             </button>
         </div>
 
         <div class="content">
-            <ChatList onChatSelected={selectedChatHandler} socket={socket}/>
+            <ChatList onChatSelected={selectedChatHandler} {socket}/>
             <div class="chat-window">
                 {#if selectedChat}
-                    <ChatWindow chat={selectedChat} socket={socket}/>
+                    <ChatWindow chat={selectedChat} {socket}/>
                 {:else}
                     <h2>Select a chat to start messaging</h2>
                 {/if}

@@ -1,9 +1,9 @@
 <script>
-    import SenderMessage from "./messages/SenderMessage.svelte";
-    import ReceiverMessage from "./messages/ReceiverMessage.svelte";
-    import {afterUpdate, onMount} from "svelte";
-    import axios from "axios";
-    import {writable} from "svelte/store";
+    import SenderMessage from './messages/SenderMessage.svelte';
+    import ReceiverMessage from './messages/ReceiverMessage.svelte';
+    import {afterUpdate, onMount} from 'svelte';
+    import axios from 'axios';
+    import {writable} from 'svelte/store';
 
     export let chat = null;
     export let socket = null;
@@ -16,7 +16,7 @@
     let page = 1;
     const page_size = 10;
     let isLoading = false;
-    let ignore = 0
+    let ignore = 0;
 
     function scrollToBottom() {
         containerRef.scrollTop = containerRef.scrollHeight;
@@ -46,7 +46,10 @@
 
         try {
             const receiver = chat.email;
-            const response = await axios.get(import.meta.env.VITE_BASE_BACKEND_URL + `messager/${sender.email}/${receiver}?page=${page}&pageSize=${page_size}&ignore=${ignore}`);
+            const response = await axios.get(
+                import.meta.env.VITE_BASE_BACKEND_URL +
+                `messager/${sender.email}/${receiver}?page=${page}&pageSize=${page_size}&ignore=${ignore}`
+            );
             const reversedMessages = response.data.reverse(); // Reverse the order of messages
             messages.update((existingMessages) => [...reversedMessages, ...existingMessages]);
             if (scroll) scrollToBottom();
@@ -107,7 +110,7 @@
         {/each}
     </div>
     <div class="message-input">
-        <input bind:value={messageInput} placeholder="Type a message" type="text">
+        <input bind:value={messageInput} placeholder="Type a message" type="text"/>
         <button on:click={sendMessage}>Send</button>
     </div>
 </div>

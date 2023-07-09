@@ -1,5 +1,5 @@
 <script>
-    import getDate from "../../utils/getDate.ts";
+    import getDate from '../../utils/getDate.ts';
 
     export let message;
 </script>
@@ -18,7 +18,7 @@
         margin-bottom: 8px;
         padding: 8px;
         border-radius: 12px;
-        background-color: #DCF8C6;
+        background-color: #dcf8c6;
         color: #000;
         min-width: 70%;
         align-self: flex-end;

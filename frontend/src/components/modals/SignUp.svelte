@@ -2,7 +2,6 @@
     import axios from 'axios';
     import {goto} from '$app/navigation';
 
-
     export let onClose = () => {
     };
 
@@ -13,15 +12,19 @@
 
     const handleSignUpSubmit = async () => {
         try {
-            const response = await axios.post(import.meta.env.VITE_BASE_BACKEND_URL + 'auth/signup', {
-                email: signUpEmail,
-                password: signUpPassword,
-                username: signUpUsername
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
+            const response = await axios.post(
+                import.meta.env.VITE_BASE_BACKEND_URL + 'auth/signup',
+                {
+                    email: signUpEmail,
+                    password: signUpPassword,
+                    username: signUpUsername
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 }
-            });
+            );
 
             // Save user data in localStorage
             localStorage.setItem('user', JSON.stringify(response.data.user));
@@ -30,12 +33,12 @@
             signUpUsername = '';
             signUpEmail = '';
             signUpPassword = '';
-            await goto('/')
+            await goto('/');
 
             // Close the modal
             onClose();
         } catch (e) {
-            console.log(e.response.data.error ?? e.message)
+            console.log(e.response.data.error ?? e.message);
             error = e.response.data.error ?? e.message;
         }
     };
@@ -46,15 +49,15 @@
         <h3>Sign Up</h3>
         <div class="form-control">
             <label>Username</label>
-            <input bind:value="{signUpUsername}" required type="text">
+            <input bind:value={signUpUsername} required type="text"/>
         </div>
         <div class="form-control">
             <label>Email</label>
-            <input bind:value="{signUpEmail}" required type="email">
+            <input bind:value={signUpEmail} required type="email"/>
         </div>
         <div class="form-control">
             <label>Password</label>
-            <input bind:value="{signUpPassword}" required type="password">
+            <input bind:value={signUpPassword} required type="password"/>
         </div>
         <div class="error">
             {error}
@@ -79,7 +82,6 @@
         justify-content: center;
         align-items: center;
     }
-
 
     .button {
         padding: 8px 16px;

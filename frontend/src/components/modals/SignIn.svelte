@@ -1,6 +1,6 @@
 <script>
     import axios from 'axios';
-    import {goto} from "$app/navigation";
+    import {goto} from '$app/navigation';
 
     export let onClose = () => {
     };
@@ -21,8 +21,7 @@
             // Clear input values
             signInEmail = '';
             signInPassword = '';
-            await goto('/')
-
+            await goto('/');
 
             // Close the modal
             onClose();
@@ -37,11 +36,11 @@
         <h3>Sign In</h3>
         <div class="form-control">
             <label>Email</label>
-            <input bind:value="{signInEmail}" required type="email">
+            <input bind:value={signInEmail} required type="email"/>
         </div>
         <div class="form-control">
             <label>Password</label>
-            <input bind:value="{signInPassword}" required type="password">
+            <input bind:value={signInPassword} required type="password"/>
         </div>
         <div class="error">
             {error}
@@ -54,7 +53,6 @@
 </div>
 
 <style>
-
     .error {
         color: red;
         margin-bottom: 16px;
@@ -72,7 +70,6 @@
         justify-content: center;
         align-items: center;
     }
-
 
     .button {
         padding: 8px 16px;
