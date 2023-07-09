@@ -17,21 +17,22 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 18
+          registry-url: 'https://registry.yarnpkg.com'
 
       # Build and test the frontend
       - name: Build and test frontend
         working-directory: frontend
         run: |
-          npm ci
-          npm run build
-          npm run test
+          yarn install --frozen-lockfile
+          yarn build
+          yarn test
 
       # Format and lint the frontend code
       - name: Format and lint frontend
         working-directory: frontend
         run: |
-          npm run format
-          npm run lint
+          yarn format
+          yarn lint
 
       # Build the frontend Docker image and push it to Docker Hub
       - name: Build and push frontend Docker image
@@ -48,16 +49,16 @@ jobs:
       - name: Build and test backend
         working-directory: backend
         run: |
-          npm ci
-          npm run build
-          npm run test
+          yarn install --frozen-lockfile
+          yarn build
+          yarn test
 
       # Format and lint the backend code
       - name: Format and lint backend
         working-directory: backend
         run: |
-          npm run format
-          npm run lint
+          yarn format
+          yarn lint
 
       # Build the backend Docker image and push it to Docker Hub
       - name: Build and push backend Docker image
@@ -68,4 +69,4 @@ jobs:
         run: |
           docker build -t dhouib/realtime_messager:backend .
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker push dhouib/realtime_messager:backend 
+          docker push dhouib/realtime_messager:backend
