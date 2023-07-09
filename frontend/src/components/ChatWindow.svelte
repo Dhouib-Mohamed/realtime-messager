@@ -28,7 +28,7 @@
             const receiver = chat.email;
             const body = messageInput.trim();
             try {
-                await axios.post(import.meta.env.VITE_BASE_BACKEND_URL + 'messager', {
+                await axios.post("http://localhost:5000/" + 'messager', {
                     sender: sender.email,
                     receiver,
                     body
@@ -48,7 +48,7 @@
         try {
             const receiver = chat.email;
             const response = await axios.get(
-                import.meta.env.VITE_BASE_BACKEND_URL +
+                "http://localhost:5000/" +
                 `messager/${sender.email}/${receiver}?page=${page}&pageSize=${page_size}&ignore=${ignore}`
             );
             const reversedMessages = response.data.reverse(); // Reverse the order of messages

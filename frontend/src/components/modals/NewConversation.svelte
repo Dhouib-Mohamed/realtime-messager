@@ -11,7 +11,7 @@
 	const createConversation = async () => {
 		try {
 			const response = await axios.get(
-					import.meta.env.VITE_BASE_BACKEND_URL + 'user/' + newChatEmail,
+					"http://localhost:5000/" + 'user/' + newChatEmail,
 					{headers: {'Content-Type': 'application/json'}}
 			);
 			onChatSelected({username: response.data.user.username, email: response.data.user.email});

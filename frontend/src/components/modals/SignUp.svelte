@@ -13,7 +13,7 @@
     const handleSignUpSubmit = async () => {
         try {
             const response = await axios.post(
-                import.meta.env.VITE_BASE_BACKEND_URL + 'auth/signup',
+                "http://localhost:5000/" + 'auth/signup',
                 {
                     email: signUpEmail,
                     password: signUpPassword,

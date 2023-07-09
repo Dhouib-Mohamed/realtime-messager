@@ -14,7 +14,7 @@
 	const fetchChats = async (page, pageSize) => {
 		const sender = userData.email;
 		const response = await axios.get(
-				import.meta.env.VITE_BASE_BACKEND_URL +
+				"http://localhost:5000/" +
 				`user/list/${sender}?page=${page}&pageSize=${pageSize}`,
 				{headers: {'Content-Type': 'application/json'}}
 		);
