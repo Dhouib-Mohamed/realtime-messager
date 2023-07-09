@@ -39,7 +39,7 @@
             onClose();
         } catch (e) {
             console.log(e.response.data.error ?? e.message);
-            error = e.response.data.error ?? e.message;
+            error = e.response?.data?.error ?? e.message ?? "Server Error. Please try again later";
         }
     };
 </script>
