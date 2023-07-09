@@ -26,7 +26,7 @@ jobs:
           yarn build
           yarn test
 
-      - name: Format and lint backend
+      - name: Format and lint frontend
         working-directory: frontend
         run: |
           yarn format

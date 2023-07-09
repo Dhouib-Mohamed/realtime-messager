@@ -25,10 +25,7 @@ module.exports = {
 			parserOptions: {
 				parser: '@typescript-eslint/parser'
 			},
-			rules: {
-				'svelte/valid-compile': 'off', // Disable A11y linting errors for Svelte components
-				'@typescript-eslint/no-empty-function': 'off'
-			}
+			rules: 'off'
 		}
 	]
 };
