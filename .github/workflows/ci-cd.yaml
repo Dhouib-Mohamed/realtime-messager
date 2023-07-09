@@ -1,0 +1,66 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+          registry-url: 'https://registry.yarnpkg.com'
+
+      - name: Build and test frontend
+        working-directory: frontend
+        run: |
+          yarn install --frozen-lockfile
+          yarn build
+          yarn test
+
+      - name: Format and lint frontend
+        working-directory: frontend
+        run: |
+          yarn format
+          yarn lint
+
+      - name: Build and push frontend Docker image
+        working-directory: frontend
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker build -t dhouib/realtime_messager:frontend .
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker push dhouib/realtime_messager:frontend
+
+      - name: Build and test backend
+        working-directory: backend
+        run: |
+          yarn install --frozen-lockfile
+          yarn build
+          yarn test
+
+      - name: Format and lint backend
+        working-directory: backend
+        run: |
+          yarn format
+          yarn lint
+
+      - name: Build and push backend Docker image
+        working-directory: backend
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker build -t dhouib/realtime_messager:backend .
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker push dhouib/realtime_messager:backend

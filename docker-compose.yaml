@@ -1,0 +1,29 @@
+version: '3'
+services:
+  frontend:
+    #    build:
+    #      context: ./frontend
+    #      dockerfile: Dockerfile
+    image: dhouib/realtime_messager:frontend
+    ports:
+      - "5100:3000"
+    depends_on:
+      - backend
+    environment:
+      - VITE_BASE_BACKEND_URL=http://localhost:5000/
+      - VITE_BASE_SOCKET_PORT=http://localhost:5001/
+
+  backend:
+    #    build:
+    #      context: ./backend
+    #      dockerfile: Dockerfile
+    image: dhouib/realtime_messager:backend
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    environment:
+      - MONGO_USER=dhouib
+      - MONGO_PASSWORD=dhouib50810555
+      - MONGO_HOST=cluster0.a0nn8lx.mongodb.net
+      - PORT=5000
+      - SOCKET_PORT=5001
