@@ -30,6 +30,7 @@ overrides: [
 			'svelte/a11y-click-events-have-key-events': 'off',
 			'svelte/a11y-no-static-element-interactions': 'off',
 			'svelte/a11y-label-has-associated-control': 'off',
+			'@typescript-eslint/no-empty-function': ['warn', {'allow': ['arrowFunctions']}],
 		}
 	}
 ]
