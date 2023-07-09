@@ -1,24 +1,23 @@
 <script>
     import axios from 'axios';
-    import {goto} from "$app/navigation";
 
     export let onClose = () => {
     };
     export let onChatSelected = () => {
     };
     export let newChatEmail = '';
+    let error = '';
 
     const createConversation = async () => {
-        const response = await axios.get(import.meta.env.VITE_BASE_BACKEND_URL + 'user/' + newChatEmail,
-            {headers: {'Content-Type': 'application/json'}}
-        );
-        console.log(response.data)
-        // Handle the response, e.g., show success message or perform additional actions
-        if (response.data.error) {
-            throw new Error(response.data.error);
+        try {
+            const response = await axios.get(import.meta.env.VITE_BASE_BACKEND_URL + 'user/' + newChatEmail,
+                {headers: {'Content-Type': 'application/json'}}
+            );
+            onChatSelected({username: response.data.user.username, email: response.data.user.email})
+            onClose();
+        } catch (e) {
+            error = e.response.data.error ?? e.message;
         }
-        onChatSelected({username: response.data.user.username, email: response.data.user.email})
-        onClose();
     };
 </script>
 
@@ -29,7 +28,11 @@
             <label>Email</label>
             <input bind:value="{newChatEmail}" required type="email">
         </div>
+        <div class="error">
+            {error}
+        </div>
         <div class="button-container">
+            <button class="button" on:click={onClose}>Close</button>
             <button class="submit-button" on:click={createConversation}>Start</button>
         </div>
     </div>
@@ -47,6 +50,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .error {
+        color: red;
+        margin-bottom: 16px;
+    }
+
+    .button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        background-color: #ccc;
+        cursor: pointer;
+        margin-right: 8px;
     }
 
     .modal {
@@ -70,7 +87,6 @@
     }
 
     .form-control input {
-        width: 100%;
         padding: 8px;
         border: 1px solid #ccc;
         border-radius: 4px;

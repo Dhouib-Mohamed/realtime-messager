@@ -7,6 +7,7 @@
 
     let signInEmail = '';
     let signInPassword = '';
+    let error = '';
 
     const handleSignInSubmit = async () => {
         try {
@@ -14,9 +15,6 @@
                 email: signInEmail,
                 password: signInPassword
             });
-            if (response.data.error) {
-                throw new Error(response.data.error);
-            }
             // Save user data in localStorage
             localStorage.setItem('user', JSON.stringify(response.data.user));
 
@@ -28,9 +26,8 @@
 
             // Close the modal
             onClose();
-        } catch (error) {
-            // Handle the error
-            console.error(error);
+        } catch (e) {
+            error = e.response.data.error ?? e.message;
         }
     };
 </script>
@@ -46,13 +43,23 @@
             <label>Password</label>
             <input bind:value="{signInPassword}" required type="password">
         </div>
+        <div class="error">
+            {error}
+        </div>
         <div class="button-container">
+            <button class="button" on:click={onClose}>Close</button>
             <button class="submit-button" on:click={handleSignInSubmit}>Sign In</button>
         </div>
     </div>
 </div>
 
 <style>
+
+    .error {
+        color: red;
+        margin-bottom: 16px;
+    }
+
     .modal-container {
         position: fixed;
         top: 0;
@@ -64,6 +71,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+
+    .button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        background-color: #ccc;
+        cursor: pointer;
+        margin-right: 8px;
     }
 
     .modal {
@@ -87,7 +104,6 @@
     }
 
     .form-control input {
-        width: 100%;
         padding: 8px;
         border: 1px solid #ccc;
         border-radius: 4px;

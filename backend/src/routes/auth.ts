@@ -7,7 +7,6 @@ const router = express.Router();
 // Sign up route
 router.post('/signup', async (req: Request, res: Response) => {
     try {
-        console.log(req.body)
         const {email, password, username} = req.body;
 
         // Check if the email already exists

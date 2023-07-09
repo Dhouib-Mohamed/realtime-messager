@@ -41,6 +41,8 @@
         fetchChats(page, pageSize);
 
         socket.on('newMessage', (message) => {
+            chats.set([]);
+            page = 1;
             fetchChats(page, pageSize);
         });
     });
@@ -67,7 +69,8 @@
     let containerRef;
 
     function handleScroll() {
-        if (containerRef.scrollTop + containerRef.clientHeight >= containerRef.scrollHeight) {
+        console.log(containerRef.scrollTop + containerRef.clientHeight, containerRef.scrollHeight)
+        if (containerRef.scrollTop + containerRef.clientHeight >= containerRef.scrollHeight - 1) {
             loadMoreChats();
         }
     }
@@ -93,6 +96,7 @@
                     </div>
                     <div class="time">{getDate(chat.lastMessage.createdAt)}</div>
                 </li>
+                <div class="breaker"></div>
             {/each}
         </ul>
     </div>
@@ -105,15 +109,34 @@
 </div>
 
 <style>
+    .new-chat-btn {
+        width: 100%;
+        padding: 8px;
+        border: none;
+        border-radius: 4px;
+        background-color: #4caf50;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
     .chat-list {
-        height: calc(100% - 80px);
+        height: calc(100% - 100px);
         overflow-y: auto;
         background-color: #fff;
         padding: 16px;
     }
 
+    .breaker {
+        height: 1px;
+        width: 100%;
+        background-color: #393434;
+        margin: 2px 0;
+    }
+
     .list-item {
-        margin-bottom: 30px;
+        margin: 15px 0;
         elevation: higher;
     }
 

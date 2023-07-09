@@ -15,6 +15,7 @@ export default function messagerRouter(io: Server) {
             const {sender, receiver} = req.params;
             const page = +(req.query.page ?? 1);
             const pageSize = +(req.query.pageSize ?? 10);
+            const ignore = +(req.query.ignore ?? 0);
 
             const messages = await Message.find({
                 $or: [
@@ -22,7 +23,7 @@ export default function messagerRouter(io: Server) {
                     {sender: receiver, receiver: sender}
                 ]
             }).sort({createdAt: -1})
-                .skip((page - 1) * pageSize)
+                .skip(((page - 1) * pageSize) + ignore)
                 .limit(pageSize);
 
             res.json(messages);

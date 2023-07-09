@@ -19,8 +19,8 @@
         }
 
         socket = io(import.meta.env.VITE_BASE_SOCKET_PORT, {
-            path: '/socket.io', // Specify the path to the socket.io server
-        }); // Establish Socket.io connection
+            path: '/socket.io',
+        });
 
         socket.on('connect', () => {
             console.log('Socket.io connected');
@@ -64,6 +64,16 @@
 {/if}
 
 <style>
+    .signout {
+        background-color: #831010;
+        color: #fff;
+        border: 1px solid #ccc;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
     .app {
         height: 100vh;
         display: flex;
